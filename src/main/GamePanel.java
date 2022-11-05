@@ -14,7 +14,7 @@ import tile.TileManager;
 public class GamePanel extends JPanel implements Runnable {
 
     // Some settings
-    final int originalTileSize = 16;
+    public final int originalTileSize = 16;
     final int scale = 3;
 
     public final int tileSize = originalTileSize * scale;
@@ -23,20 +23,22 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = maxScreenCol * tileSize;
     public final int screenHeight = maxScreenRow * tileSize;
 
-    public final int maxWorldCol = 24;
-    public final int maxWorldRow = 24;
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
     public final int worldWidth = maxWorldCol * tileSize;
     public final int worldHeight = maxWorldRow * tileSize;
 
     int FPS = 60;
 
     // Some objects
-    public TileManager tileManager = new TileManager(this, "/textureAtlas");
+    public TileManager tileManager = new TileManager(this, "/messy_texture_atlas.png");
     KeyHandler keyHandler = new KeyHandler();
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public AssetPlacer aPlacer = new AssetPlacer(this);
+    public UI ui = new UI(this);
     Thread gameThread;
     public Player player = new Player(this, keyHandler);
-    public SuperObject object[] = new SuperObject[10];
+    public SuperObject objects[] = new SuperObject[10];
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -44,6 +46,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+        aPlacer.setObject();
     }
 
     public void startGameThread() {
@@ -92,7 +98,15 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;
 
         tileManager.draw(g2);
+
+        for(int i = 0; i < objects.length; i++) {
+            if(objects[i] != null) {
+                objects[i].draw(g2, this);
+            }
+        }
+
         player.draw(g2);
+        ui.draw(g2);
         g2.dispose();
     }
 }

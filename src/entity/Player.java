@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
+    public int keyNum;
 
     public final int screenX;
     public final int screenY;
@@ -26,6 +27,8 @@ public class Player extends Entity {
         solidArea = new Rectangle();
         solidArea.x = 12;
         solidArea.y = 12;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         solidArea.width = 30;
         solidArea.height = 38;
 
@@ -34,8 +37,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 8;
-        worldY = gp.tileSize * 6;
+        worldX = gp.tileSize * 17;
+        worldY = gp.tileSize * 32;
         speed = 4;
         direction = "down";
     }
@@ -69,6 +72,8 @@ public class Player extends Entity {
 
             collisionOn = false;
             gp.collisionChecker.checkTile(this);
+            int objIndex = gp.collisionChecker.checkObject(this, true);
+            pickUpObject(objIndex);
 
             if (collisionOn == false) {
                 switch (direction) {
@@ -94,6 +99,30 @@ public class Player extends Entity {
                     }
                     spriteCounter = 0;
                 }
+            }
+        }
+    }
+
+    public void pickUpObject(int i) {
+        if(i != 999) {
+            String objectName = gp.objects[i].name;
+            switch(objectName) {
+                case "Key":
+                    keyNum++;
+                    gp.objects[i] = null;
+                    System.out.println("Key count: " + keyNum);
+                    break;
+                case "Door":
+                    if(keyNum > 0) {
+                        gp.objects[i] = null;
+                        keyNum--;
+                    }
+                    System.out.println("Key count: " + keyNum);
+                    break;
+                case "Boots":
+                    speed += 2;
+                    gp.objects[i] = null;
+                    break;
             }
         }
     }
