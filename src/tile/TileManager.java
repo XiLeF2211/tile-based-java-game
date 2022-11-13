@@ -33,90 +33,61 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        int ots = gp.originalTileSize;
+        int i = gp.originalTileSize;
         try {
             registerTile(0, false, 0, 0); // GRASS
-            registerTile(1, false, ots, 0); // GRASS ACCENT 0
-            registerTile(2, false, 2*ots, 0); // GRASS ACCENT 1
-            registerTile(4, true, 4*ots, 0); // BRICK
-            registerTile(5, true, 5*ots, 0); // TILED FLOOR
-            registerTile(6, true, 6*ots, 0); // CHISELED STONE
-            registerTile(7, false, 7*ots, 0); // PLANK
-            registerTile(8, true, 8*ots, 0); // LOG VERTICAL
-            registerTile(9, true, 9*ots, 0); // LOG HORIZONTAL
-
-            // for (int j = 10; j <= 35; j++) {
-            //     for (int k = 10; k <= 16; k++) {
-            //         registerTile(j, true, k*ots, 0);
-            //     }
-            //     for (int k = 0; k <=16; k++) {
-            //         for (int l = 0; l < 3; l++) {
-            //             registerTile(j, true, k*ots, l*ots);
-            //         }
-            //         if (k > 15) {
-            //             k = 0;
-            //         }
-            //     }
-            // }
+            registerTile(1, false, i, 0); // GRASS ACCENT 0
+            registerTile(2, false, 2*i, 0); // GRASS ACCENT 1
+            registerTile(4, true, 4*i, 0); // BRICK
+            registerTile(5, true, 5*i, 0); // TILED FLOOR
+            registerTile(6, true, 6*i, 0); // CHISELED STONE
+            registerTile(7, false, 7*i, 0); // PLANK
+            registerTile(8, true, 8*i, 0); // LOG VERTICAL
+            registerTile(9, true, 9*i, 0); // LOG HORIZONTAL
 
             // WATER TILES
-            registerTile(10, true, 10*ots, 0); // TOP LEFT WATER
-            registerTile(11, true, 11*ots, 0); // TOP RIGHT WATER
-            registerTile(12, true, 12*ots, 0); // BOTTOM RIGHT WATER
-            registerTile(13, true, 13*ots, 0); // BOTTOM LEFT WATER
+            registerTile(10, true, 10*i, 0); // TOP LEFT WATER
+            registerTile(11, true, 11*i, 0); // TOP RIGHT WATER
+            registerTile(12, true, 12*i 0); // BOTTOM RIGHT WATER
+            registerTile(13, true, 13*i, 0); // BOTTOM LEFT WATER
 
-            registerTile(14, true, 14*ots, 0); // BOTTOM WATER
-            registerTile(15, true, 15*ots, 0); // LEFT WATER
+            registerTile(14, true, 14*i, 0); // BOTTOM WATER
+            registerTile(15, true, 15*i, 0); // LEFT WATER
             registerTile(16, true, 0, i); // RIGHT WATER
-            registerTile(17, true, 1*ots, i); // TOP WATER
-            registerTile(18, true, 2*ots, i); // WATER
+            registerTile(17, true, 1*i, i); // TOP WATER
+            registerTile(18, true, 2*i, i); // WATER
+            registerTile(27, true, 11*i, i); // WATER ACCENT
 
-            registerTile(19, true, 3*ots, i); // TOP LEFT WATER ACCENT
-            registerTile(20, true, 4*ots, i); // TOP RIGHT WATER ACCENT
-            registerTile(21, true, 5*ots, i); // BOTTOM RIGHT WATER ACCENT
-            registerTile(22, true, 6*ots, i); // BOTTOM LEFT WATER ACCENT
-
-            registerTile(23, true, 7*ots, i); // BOTTOM WATER ACCENT
-            registerTile(24, true, 8*ots, i); // LEFT WATER ACCENT
-            registerTile(25, true, 9*ots, i); // RIGHT WATER ACCENT
-            registerTile(26, true, 10*ots, i); // TOP WATER ACCENT
-            registerTile(27, true, 11*ots, i); // WATER ACCENT
-
-            registerTile(28, true, 12*ots, i); // BOTTOM RIGHT CORNER WATER
-            registerTile(29, true, 13*ots, i); // BOTTOM LEFT CORNER WATER
-            registerTile(30, true, 14*ots, i); // TOP RIGHT WATER
-            registerTile(31, true, 15*ots, i); // TOP LEFT CORNER WATER
-
-            registerTile(32, true, 0, 2*ots); // BOTTOM RIGHT CORNER WATER ACCENT
-            registerTile(33, true, 1*ots, 2*ots); // BOTTOM LEFT CORNER WATER ACCENT
-            registerTile(34, true, 2*ots, 2*ots); // TOP RIGHT WATER ACCENT
-            registerTile(35, true, 3*ots, 2*ots); // TOP LEFT CORNER WATER ACCENT
+            registerTile(28, true, 12*i, i); // BOTTOM RIGHT CORNER WATER
+            registerTile(29, true, 13*i, i); // BOTTOM LEFT CORNER WATER
+            registerTile(30, true, 14*i, i); // TOP RIGHT WATER
+            registerTile(31, true, 15*i, i); // TOP LEFT CORNER WATER
 
             // PATH TILES
-            registerTile(36, false, 4*ots, 2*ots); // BOTTOM PATH
-            registerTile(37, false, 5*ots, 2*ots); // LEFT PATH
-            registerTile(38, false, 6*ots, 2*ots); // TOP PATH
-            registerTile(39, false, 7*ots, 2*ots); // RIGHT PATH
+            registerTile(36, false, 4*i, 2*i); // BOTTOM PATH
+            registerTile(37, false, 5*i, 2*i); // LEFT PATH
+            registerTile(38, false, 6*i, 2*i); // TOP PATH
+            registerTile(39, false, 7*i, 2*i); // RIGHT PATH
 
-            registerTile(40, false, 8*ots, 2*ots); // HORIZONTAL PATH
-            registerTile(41, false, 9*ots, 2*ots); // VERTICAL PATH
+            registerTile(40, false, 8*i, 2*i); // HORIZONTAL PATH
+            registerTile(41, false, 9*i, 2*i); // VERTICAL PATH
 
-            registerTile(42, false, 10*ots, 2*ots); // RIGHT TURN PATH
-            registerTile(43, false, 11*ots, 2*ots); // DOWN TURN PATH
-            registerTile(44, false, 12*ots, 2*ots); // LEFT TURN PATH
-            registerTile(45, false, 13*ots, 2*ots); // UP TURN PATH
+            registerTile(42, false, 10*i, 2*i); // RIGHT TURN PATH
+            registerTile(43, false, 11*i, 2*i); // DOWN TURN PATH
+            registerTile(44, false, 12*i, 2*i); // LEFT TURN PATH
+            registerTile(45, false, 13*i, 2*i); // UP TURN PATH
 
-            registerTile(46, false, 14*ots, 2*ots); // TOP END PATH
-            registerTile(47, false, 15*ots, 2*ots); // BOTTOM END PATH
-            registerTile(48, false, 0, 3*ots); // LEFT END PATH
-            registerTile(49, false, 1*ots, 3*ots); // RIGHT END PATH
+            registerTile(46, false, 14*i, 2*i); // TOP END PATH
+            registerTile(47, false, 15*i, 2*i); // BOTTOM END PATH
+            registerTile(48, false, 0, 3*i); // LEFT END PATH
+            registerTile(49, false, 1*i, 3*i); // RIGHT END PATH
 
-            registerTile(50, false, 2*ots, 3*ots); // NEUTRAL VERTICAL PATH
-            registerTile(51, false, 3*ots, 3*ots); // NEUTRAL HORIZONTAL PATH
+            registerTile(50, false, 2*i, 3*i); // NEUTRAL VERTICAL PATH
+            registerTile(51, false, 3*i, 3*i); // NEUTRAL HORIZONTAL PATH
 
             // TREE TILES
-            registerTile(52, true, 4*ots, 3*ots); // TREE TOP
-            registerTile(53, true, 5*ots, 3*ots); // TREE BOTTOM
+            registerTile(52, true, 4*i, 3*i); // TREE TOP
+            registerTile(53, true, 5*i, 3*i); // TREE BOTTOM
         } catch (Exception e) {
             e.printStackTrace();
         }
