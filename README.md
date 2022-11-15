@@ -8,3 +8,9 @@ I'll put logs here for everything I commit.
 - Brand new map with fresh new tiles!
 #### Issues
 - The objects are misplaced.
+
+### Mon Nov 14
+- Completed UI with Timer, Key Count, Notifications, and Game Finished screen
+- Improved rendering performance (but you can't notice it)
+#### Bugs fixed
+- The objects are now placed correctly.
