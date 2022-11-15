@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -56,6 +57,28 @@ public class Player extends Entity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        up1 = registerTexture("boy_up_1");
+        up2 = registerTexture("boy_up_2");
+        down1 = registerTexture("boy_down_1");
+        down2 = registerTexture("boy_down_2");
+        left1 = registerTexture("boy_left_1");
+        left2 = registerTexture("boy_left_2");
+        right1 = registerTexture("boy_right_1");
+        right2 = registerTexture("boy_right_2");
+    }
+
+    public BufferedImage registerTexture(String filePath) {
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream("/player/" + filePath + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return image;
     }
 
     public void update() {
@@ -110,18 +133,28 @@ public class Player extends Entity {
                 case "Key":
                     keyNum++;
                     gp.objects[i] = null;
-                    System.out.println("Key count: " + keyNum);
+                    gp.ui.showMessage("You got a key!");
                     break;
                 case "Door":
                     if(keyNum > 0) {
                         gp.objects[i] = null;
                         keyNum--;
+                        gp.ui.showMessage("You opened the door!");
+                        gp.playSE(1);
+                    } else {
+                        gp.ui.showMessage("You need a key!");
                     }
-                    System.out.println("Key count: " + keyNum);
                     break;
                 case "Boots":
-                    speed += 2;
+                    speed += 3;
                     gp.objects[i] = null;
+                    gp.ui.showMessage("Speed up!");
+                    gp.playSE(3);
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSE(2);
                     break;
             }
         }
@@ -164,6 +197,6 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }
